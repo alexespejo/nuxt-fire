@@ -10,8 +10,10 @@ const signIn = async () => {
 const signOut = async () => {
  credentials.value = await signOutUser();
 };
-
-onMounted(async () => {});
+const config = useRuntimeConfig();
+onMounted(async () => {
+ console.log(config.public.firebaseAPIKEY);
+});
 </script>
 <template>
  <div>
