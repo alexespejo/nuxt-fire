@@ -5,7 +5,8 @@ export default defineNuxtPlugin(() => {
   console.log($auth?.currentUser);
 
   if (!$auth?.currentUser?.uid) {
-   return navigateTo("/");
+   return navigateTo("/login/signin");
   }
+  //   return navigateTo("/secret");
  });
 });

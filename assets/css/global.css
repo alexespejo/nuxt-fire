@@ -1,0 +1,10 @@
+* {
+ @apply font-bold transition-all;
+}
+.bold-border {
+ @apply focus:border-black border-2 border-b-4 border-r-4 font-bold rounded-lg  transition-all ease-in text-black;
+}
+
+.btn-bordered {
+ @apply flex justify-center items-center border-black border-2 border-b-4 border-r-4 font-bold rounded-lg  transition-all ease-in text-black p-2 hover:bg-orange-200 w-fit max-w-xl;
+}
