@@ -5,7 +5,7 @@ export default defineNuxtPlugin((nuxtApp) => {
  const config = useRuntimeConfig();
  const firebaseConfig = {
   apiKey: config.public.firebaseAPIKEY,
-  authDomain: config.public.firebaseAuthDomain,
+  authDomain: "firenuxt-c4d77.firebaseapp.com",
   projectId: config.public.firebaseprojectId,
   storageBucket: config.public.firebasestorageBucket,
   messagingSenderId: config.public.firebasemessagingSenderId,
