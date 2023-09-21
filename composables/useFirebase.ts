@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 
 export const googleLogin = async () => {
+ const config = useRuntimeConfig();
  const auth = getAuth();
  const provider = new GoogleAuthProvider();
  signInWithPopup(auth, provider)
@@ -30,6 +31,7 @@ export const googleLogin = async () => {
    // The AuthCredential type that was used.
    const credential = GoogleAuthProvider.credentialFromError(error);
    console.log(errorMessage);
+   console.log(config.public.firebaseAuthDomain);
   });
 };
 
