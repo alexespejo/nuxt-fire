@@ -7,6 +7,5 @@ export default defineNuxtPlugin(() => {
   if (!$auth?.currentUser?.uid) {
    return navigateTo("/login/signin");
   }
-  //   return navigateTo("/secret");
  });
 });

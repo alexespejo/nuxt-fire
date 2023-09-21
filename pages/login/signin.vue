@@ -14,6 +14,9 @@ const signIn = async () => {
  console.log(credentials.value);
 };
 
+const signInWithGoogle = async () => {
+ googleLogin();
+};
 const signOut = async () => {
  credentials.value = await signOutUser();
 };
@@ -24,11 +27,14 @@ const signOut = async () => {
    class="flex flex-col space-y-4 border-4 border-b-8 border-r-8 rounded-2xl border-black p-5 max-w-lg min-w-sm"
   >
    <h4 class="text-xl p- pb-0.5 border-b">Sign In</h4>
+
    <InputField label="Email">
     <input
      type="text"
      placeholder="Type here"
-     class="bold-border p-2 text-lg w-72"
+     :class="`bold-border p-2 text-lg w-72 focus:border-black ${
+      email ? 'border-black' : ''
+     }`"
      v-model="email"
     />
    </InputField>
@@ -37,12 +43,15 @@ const signOut = async () => {
     <input
      type="password"
      placeholder="Password"
-     class="bold-border p-2 text-lg w-72"
+     class="bold-border p-2 text-lg w-72 focus:border-black"
      v-model="password"
     />
    </InputField>
    <div class="">
     <button @click="signIn" class="btn-bordered ml-auto">Sign In</button>
+    <button @click="signInWithGoogle" class="btn-bordered ml-auto">
+     Google
+    </button>
     <div class="flex items-center justify-center pt-1">
      <NuxtLink
       to="/login/signup"
@@ -55,9 +64,3 @@ const signOut = async () => {
   </div>
  </main>
 </template>
-
-<style>
-/* .bold-border {
-  @apply border-black border-2 border-b-4 border-r-4 font-bold rounded-lg px-2 py-1 transition-all ease-in text-black;
-  } */
-</style>

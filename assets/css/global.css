@@ -1,8 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 * {
+ font-family: "Poppins", sans-serif;
  @apply font-bold transition-all;
 }
+body {
+ background: white;
+ background-image: radial-gradient(rgba(0, 0, 0, 50%) 1px, transparent 0);
+ background-size: 40px 40px;
+ background-position: -20px 20px;
+}
 .bold-border {
- @apply focus:border-black border-2 border-b-4 border-r-4 font-bold rounded-lg  transition-all ease-in text-black;
+ @apply border-2 border-b-4 border-r-4 font-bold rounded-lg  transition-all ease-in text-black;
 }
 
 .btn-bordered {

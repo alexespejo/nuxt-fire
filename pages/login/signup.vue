@@ -4,7 +4,6 @@ const credentials = ref();
 const email = ref("");
 const password = ref("");
 const reTypePassword = ref("");
-const confirmPassword = ref();
 
 const firebaseUser = useFirebaseUser();
 
@@ -12,29 +11,22 @@ watch(firebaseUser, async () => {
  return navigateTo("/secret");
 });
 
-watch(reTypePassword, async () => {
- confirmPassword.value = password.value === reTypePassword.value;
-});
-
 const create = async () => {
- if (confirmPassword.value) {
+ if (
+  password.value === reTypePassword.value &&
+  password.value !== "" &&
+  reTypePassword.value !== ""
+ ) {
   credentials.value = await createUser(email.value, password.value);
  } else {
-  alert("incorret password");
+  alert("Sorry your passwords do not match :(");
  }
-};
-const signIn = async () => {
- credentials.value = await signInUser(email.value, password.value);
- console.log(credentials.value);
-};
-
-const signOut = async () => {
- credentials.value = await signOutUser();
 };
 </script>
 <template>
  <main class="h-screen w-screen flex justify-center items-center">
-  <div
+  <form
+   @submit="create"
    class="flex flex-col space-y-4 border-4 border-b-8 border-r-8 rounded-2xl border-black p-5 max-w-lg min-w-sm"
   >
    <h4 class="text-xl p- pb-0.5 border-b">Register</h4>
@@ -42,7 +34,9 @@ const signOut = async () => {
     <input
      type="text"
      placeholder="Type here"
-     class="bold-border p-2 text-lg w-72"
+     :class="`bold-border p-2 text-lg w-72 ${
+      email.length !== 0 ? 'border-black' : ''
+     }`"
      v-model="email"
     />
    </InputField>
@@ -51,7 +45,9 @@ const signOut = async () => {
     <input
      type="password"
      placeholder="Password"
-     class="bold-border p-2 text-lg w-72"
+     :class="`bold-border p-2 text-lg w-72 ${
+      password.length !== 0 ? 'border-black' : ''
+     }`"
      v-model="password"
     />
    </InputField>
@@ -60,13 +56,25 @@ const signOut = async () => {
     <input
      type="password"
      placeholder="Password"
-     class="bold-border p-2 text-lg w-72"
+     :class="`bold-border p-2 text-lg w-72 ${
+      password === reTypePassword
+       ? reTypePassword === ''
+         ? ''
+         : 'border-green-500'
+       : 'border-red-500'
+     }`"
      v-model="reTypePassword"
     />
    </InputField>
 
    <div class="">
-    <button @click="create" class="btn-bordered ml-auto">Register</button>
+    <button
+     @submit="create"
+     :class="`btn-bordered ml-auto`"
+     :disabled="password !== reTypePassword"
+    >
+     Register
+    </button>
     <div class="flex items-center justify-center pt-1">
      <NuxtLink
       to="/login/signin"
@@ -76,7 +84,7 @@ const signOut = async () => {
      </NuxtLink>
     </div>
    </div>
-  </div>
+  </form>
  </main>
 </template>
 
