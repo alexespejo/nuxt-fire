@@ -5,9 +5,12 @@
 }
 body {
  background: white;
- background-image: radial-gradient(rgba(0, 0, 0, 50%) 1px, transparent 0);
- background-size: 40px 40px;
- background-position: -20px 20px;
+ background-image: radial-gradient(
+  rgba(0, 0, 0, 50%) 1px,
+  transparent 0
+ ) !important;
+ background-size: 40px 40px !important;
+ background-position: -20px 20px !important;
 }
 .bold-border {
  @apply border-2 border-b-4 border-r-4 font-bold rounded-lg  transition-all ease-in text-black;

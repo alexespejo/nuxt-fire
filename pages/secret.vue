@@ -3,20 +3,25 @@ definePageMeta({
  middleware: ["auth"],
 });
 const credentials = ref();
-const firebaseUser = useFirebaseUser();
 
 const signOut = async () => {
  credentials.value = await signOutUser();
+
  return navigateTo("/login/signin");
 };
+
+const { data: hello } = await useFetch("/api/post/alex");
 </script>
 
 <template>
- <div>
-  <button @click="signOut">Sign Out</button>
-  <div>Secret</div>
-  {{ firebaseUser.email }}
- </div>
+ <NuxtLayout name="custom">
+  <div
+   class="bg-white border-2 border-b-4 border-r-4 border-back rounded-lg p-1 border-slate-400"
+  >
+   {{ hello }}
+   <button class="btn btn-primary">Button</button>
+  </div>
+ </NuxtLayout>
 </template>
 
 <style></style>

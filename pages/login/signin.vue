@@ -24,7 +24,7 @@ const signOut = async () => {
 <template>
  <main class="h-screen w-screen flex justify-center items-center">
   <div
-   class="flex flex-col space-y-4 border-4 border-b-8 border-r-8 rounded-2xl border-black p-5 max-w-lg min-w-sm"
+   class="flex flex-col space-y-4 border-4 border-b-8 border-r-8 rounded-2xl border-black p-5 max-w-lg min-w-sm bg-white"
   >
    <h4 class="text-xl p- pb-0.5 border-b">Sign In</h4>
 
