@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
  css: ["~/assets/css/global.css"],
- modules: ["@nuxtjs/tailwindcss"],
+ modules: ["@nuxtjs/tailwindcss", "nuxt-icon"],
  devtools: { enabled: true },
  runtimeConfig: {
   // Private config that is only available on the server

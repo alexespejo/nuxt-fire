@@ -1,11 +1,11 @@
 export default defineNuxtPlugin(() => {
- addRouteMiddleware("auth", () => {
+ addRouteMiddleware("loadingUser", () => {
   const { $auth } = useNuxtApp();
 
   console.log($auth?.currentUser);
 
   if (!$auth?.currentUser?.uid) {
-   return navigateTo("/login");
+   return navigateTo("/user/loading");
   }
  });
 });
