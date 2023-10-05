@@ -8,7 +8,7 @@ const postContent = ref("");
 
 function createPost() {
  if (postTitle.value && postContent.value && firebaseUser) {
-  $fetch("/api/post/createPost", {
+  $fetch("/api/post/create-post", {
    method: "post",
    body: {
     uid: firebaseUser.value.uid,
@@ -23,7 +23,7 @@ function createPost() {
 <template>
  <NuxtLayout name="custom">
   <div
-   class="bg-white border-2 border-b-4 border-r-4 border-back rounded-lg p-1 border-slate-400 text-gray-400"
+   class="bg-white border-2 border-b-4 border-r-4 border-back rounded-lg p-1 border-slate-400 text-gray-400 md:w-3/4 self-center"
   >
    <!-- You can open the modal using ID.showModal() method -->
    <Modal
@@ -32,8 +32,8 @@ function createPost() {
     :disabled="!firebaseUser"
     title="Create Post"
    >
-    <h3 class="font-bold text-lg">Create Post</h3>
-    <form class="flex-col space-y-5" @submit="createPost">
+    <h3 class="font-bold text-base">Create Post</h3>
+    <form class="flex-col space-y-5" @submit.prevent="createPost">
      <div class="form-control w-full">
       <label class="label">
        <span class="label-text text-base">Title Your Post</span>

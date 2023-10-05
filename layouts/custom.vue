@@ -82,7 +82,7 @@ const showModal = () => {
     </div>
    </div>
   </dialog>
-  <div class="md:px-28 md:pt-3">
+  <div class="md:px-28 md:pt-3 flex flex-col">
    <slot />
   </div>
  </main>

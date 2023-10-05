@@ -19,6 +19,6 @@ export default defineEventHandler(async (event) => {
  await updateDoc(userRef, {
   posts: arrayUnion(docRef.id),
  });
- console.log(body);
+ //  console.log(body);
  setResponseStatus(event, 202);
 });

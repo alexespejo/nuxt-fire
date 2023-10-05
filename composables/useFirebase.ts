@@ -12,15 +12,16 @@ export const googleLogin = async () => {
  const auth = getAuth();
  const provider = new GoogleAuthProvider();
  signInWithPopup(auth, provider)
-  .then((result) => {
+  .then(async (result) => {
    // This gives you a Google Access Token. You can use it to access the Google API.
    const credential: any = GoogleAuthProvider.credentialFromResult(result);
    const token = credential.accessToken;
-   console.log(token);
-   // The signed-in user info.
+   //  console.log(token);
    const user = result.user;
-   // IdP data available using getAdditionalUserInfo(result)
-   // ...
+   //  console.log("test", user.uid);
+   //  if (await $fetch(`/api/signup-user/${user.uid}`)) {
+   //   navigateTo("/newUser");
+   //  }
   })
   .catch((error) => {
    // Handle Errors here.

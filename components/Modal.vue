@@ -5,7 +5,7 @@ const props = defineProps(["class", "id", "disabled", "title"]);
 <template>
  <div class="">
   <button
-   class="border-2 border-dashed text-gray-400 border-gray-400 w-full text-left p-2 text-lg hover:bg-slate-100 hover:border-gray-300"
+   class="border-2 border-dashed text-gray-400 border-gray-400 w-full text-left p-1 hover:bg-slate-100 hover:border-gray-300 text-base"
    onclick="createPost.showModal()"
    :disabled="props.disabled"
   >
