@@ -2,21 +2,59 @@
 definePageMeta({
  middleware: ["auth"],
 });
-const credentials = ref();
+const firebaseUser = useFirebaseUser();
+const postTitle = ref("");
+const postContent = ref("");
 
-const signOut = async () => {
- credentials.value = await signOutUser();
-
- return navigateTo("/login/signin");
-};
+function createPost() {
+ if (postTitle.value && postContent.value && firebaseUser) {
+  $fetch("/api/post/createPost", {
+   method: "post",
+   body: {
+    uid: firebaseUser.value.uid,
+    postTitle: postTitle.value,
+    postContent: postContent.value,
+   },
+  });
+ }
+}
 </script>
 
 <template>
  <NuxtLayout name="custom">
   <div
-   class="bg-white border-2 border-b-4 border-r-4 border-back rounded-lg p-1 border-slate-400"
-  ></div>
+   class="bg-white border-2 border-b-4 border-r-4 border-back rounded-lg p-1 border-slate-400 text-gray-400"
+  >
+   <!-- You can open the modal using ID.showModal() method -->
+   <Modal
+    class=""
+    id="createPost"
+    :disabled="!firebaseUser"
+    title="Create Post"
+   >
+    <h3 class="font-bold text-lg">Create Post</h3>
+    <form class="flex-col space-y-5" @submit="createPost">
+     <div class="form-control w-full">
+      <label class="label">
+       <span class="label-text text-base">Title Your Post</span>
+      </label>
+      <input
+       type="text"
+       placeholder="Type here"
+       class="p-2 bold-border focus:border-black w-full max-w-full"
+       v-model="postTitle"
+      />
+     </div>
+     <div class="form-control">
+      <textarea
+       class="p-2 bold-border focus:border-black h-24"
+       placeholder="Type Here"
+       v-model="postContent"
+      ></textarea>
+     </div>
+     <input type="submit" class="btn" />
+    </form>
+   </Modal>
+  </div>
  </NuxtLayout>
 </template>
-
-<style></style>

@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore";
+import { getDoc, setDoc, collection, doc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 
 export default defineEventHandler(async (event) => {
@@ -6,12 +6,19 @@ export default defineEventHandler(async (event) => {
  try {
   const docRef = doc(db, "user-data", id);
   const docSnap = await getDoc(docRef);
+
   if (docSnap.exists()) {
    return docSnap.data();
+  } else {
+   const userCollection = collection(db, "user-data");
+   await setDoc(doc(userCollection, id), {
+    major: "",
+    biography: "",
+    year: 0,
+    posts: [],
+   });
   }
  } catch (error) {
-  console.log("invalid id", error);
+  console.log(error);
  }
-
- //  const docRef = doc(db, "user-data", "jn91RBk9HmqJD8FYfc8V");
 });
