@@ -6,7 +6,9 @@ const firebaseUser = useFirebaseUser();
 const postTitle = ref("");
 const postContent = ref("");
 
-const { data: userPosts } = await useFetch("/api/get/get-posts");
+const { pending, data: userPosts } = await useFetch("/api/get/get-posts", {
+ lazy: true,
+});
 async function createPost() {
  if (postTitle.value && postContent.value && firebaseUser) {
   const post = await $fetch("/api/post/create-post", {
@@ -25,7 +27,6 @@ async function createPost() {
 
 <template>
  <NuxtLayout name="custom">
-  <DemoNoticeModal />
   <div class="h-1/6 lg:w-3/4 self-center w-full">
    <div
     class="bg-white border-2 border-b-4 border-r-4 border-back rounded-lg p-1 border-slate-400 text-gray-400 self-center w-full h-fit"
@@ -62,8 +63,10 @@ async function createPost() {
     </CreatePostModal>
    </div>
   </div>
+  <div class="" v-if="pending">pending</div>
   <main
    class="flex flex-col space-y-3 py-5 px-1 md:w-3/4 self-center overflow-auto h-5/6"
+   v-else
   >
    <article
     v-for="i in userPosts.posts"
