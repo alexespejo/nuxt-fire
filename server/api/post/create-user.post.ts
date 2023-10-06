@@ -5,6 +5,7 @@ export default defineEventHandler(async (event) => {
  try {
   const docRef = await setDoc(doc(db, "user-data", body.uid), {
    displayName: body.displayName,
+   photoURL: body.photoLink,
    username: body.username,
    biography: body.biography,
    major: body.major,

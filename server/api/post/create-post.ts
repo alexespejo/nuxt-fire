@@ -20,5 +20,5 @@ export default defineEventHandler(async (event) => {
   posts: arrayUnion(docRef.id),
  });
  //  console.log(body);
- setResponseStatus(event, 202);
+ return { post_id: docRef.id };
 });

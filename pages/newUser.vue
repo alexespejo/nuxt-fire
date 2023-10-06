@@ -32,6 +32,7 @@ function registerUser() {
   body: {
    uid: firebaseUser.value.uid,
    displayName: firebaseUser.value.displayName,
+   photoLink: firebaseUser.value.photoURL,
    username: username.value,
    biography: biography.value,
    major: major.value,
@@ -51,10 +52,10 @@ function registerUser() {
 <template>
  <NuxtLayout>
   <main
-   class="flex flex-col justify-center items-center w-full h-screen bg-slate-200/30"
+   class="flex flex-col justify-center items-center w-full h-screen bg-slate-200/30 py-3"
   >
    <div
-    class="bold-border border-black bg-slate-100 md:w-1/2 lg:w-1/3 px-5 py-3 shadow-xl"
+    class="bold-border border-black bg-slate-100 md:w-1/2 lg:w-1/3 px-5 py-3 shadow-xl max-h-full w-full overflow-y-auto"
     v-if="firebaseUser"
    >
     <h1 class="text-lg md:text-xl">

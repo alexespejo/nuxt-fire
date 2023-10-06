@@ -24,6 +24,8 @@ const showModal = () => {
      </h6>
     </div>
    </NuxtLink>
+   <!-- {{ firebaseUser.photoURL }} -->
+
    <div class="flex items-center">
     <div class="flex flex-col p-1">
      <h3 class="text-sm hidden md:block">Welcome</h3>
@@ -54,11 +56,11 @@ const showModal = () => {
       tabindex="0"
       class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 border-2 border-base-300"
      >
-      <li>
+      <!-- <li>
        <NuxtLink :to="`/user/${firebaseUser ? firebaseUser.uid : ''}`"
         >Profile</NuxtLink
        >
-      </li>
+      </li> -->
       <!-- <li>
        <NuxtLink :to="`/editProfile/${firebaseUser ? firebaseUser.uid : ''}`"
         >Edit Profile</NuxtLink
@@ -82,7 +84,7 @@ const showModal = () => {
     </div>
    </div>
   </dialog>
-  <div class="md:px-28 md:pt-3 flex flex-col">
+  <div class="md:px-28 md:pt-3 flex flex-col h-5/6">
    <slot />
   </div>
  </main>
