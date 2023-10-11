@@ -27,7 +27,7 @@ async function createPost() {
 
 <template>
  <NuxtLayout name="custom">
-  <div class="h-1/6 lg:w-3/4 self-center w-full">
+  <div class="h-1/6 lg:w-1/2 w-full self-center">
    <div
     class="bg-white border-2 border-b-4 border-r-4 border-back rounded-lg p-1 border-slate-400 text-gray-400 self-center w-full h-fit"
    >
@@ -65,7 +65,7 @@ async function createPost() {
   </div>
   <div class="" v-if="pending">pending</div>
   <main
-   class="flex flex-col space-y-3 py-5 px-1 md:w-3/4 self-center overflow-auto h-5/6"
+   class="flex flex-col space-y-3 py-5 px-1 w-full md:w-3/5 self-center"
    v-else
   >
    <article

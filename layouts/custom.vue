@@ -10,10 +10,12 @@ const signOut = async () => {
 const showModal = () => {
  my_modal_1.showModal();
 };
+const sample = ref(["", "", "", "", ""]);
 </script>
 <template>
- <main class="relative h-screen w-screen overflow-auto">
+ <main :class="`relative h-screen w-screen overflow-auto`">
   <nav
+   id="main_menue_navbar"
    class="flex items-center justify-between bg-white shadow-lg sticky top-0 px-1"
   >
    <NuxtLink to="/secret" class="btn btn-ghost">
@@ -35,21 +37,17 @@ const showModal = () => {
      </h3>
     </div>
 
-    <div class="dropdown dropdown-end p-2">
+    <div class="dropdown dropdown-end p-2" v-if="firebaseUser">
      <label
       tabindex="0"
       class="cursor-pointer flex items-center hover:bg-gray-200 p-1 rounded-xl"
      >
       <img
-       v-if="firebaseUser"
        :src="firebaseUser.photoURL"
        alt=""
        :class="`rounded-lg w-10 h-10 md:h-12 md:w-12`"
       />
-      <div
-       class="rounded-lg w-10 h-10 md:h-12 md:w-12 pulse bg-slate-200"
-       v-else
-      ></div>
+
       <Icon name="gridicons:dropdown" class="text-2xl" />
       <!-- <Icon icon="ic:baseline-arrow-drop-down" /> -->
      </label>
@@ -70,6 +68,10 @@ const showModal = () => {
       <li><button @click="showModal">Sign out</button></li>
      </ul>
     </div>
+    <div
+     class="rounded-lg w-10 h-10 md:h-12 md:w-12 pulse bg-slate-200"
+     v-else
+    ></div>
    </div>
   </nav>
   <dialog id="my_modal_1" class="modal">
@@ -85,8 +87,60 @@ const showModal = () => {
     </div>
    </div>
   </dialog>
-  <div class="md:px-28 md:pt-3 flex flex-col h-5/6">
+  <div class="md:px-28 md:pt-3 flex flex-col h-5/6" v-if="firebaseUser">
    <slot />
+  </div>
+  <div id="main_content" v-else class="h-5/6 overflow-hidden flex flex-col">
+   <div
+    class="md:px-28 md:pt-3 flex flex-col w-screen h-screen items-center justify-center absolute top-0 bg-gray-300/90 z-50"
+   >
+    <slot />
+   </div>
+   <div class="h-1/6 w-3/4 md:w-1/2 self-center p-5">
+    <div class="animate-pulse flex space-x-4">
+     <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+     <div class="flex-1 space-y-6 py-1">
+      <div class="h-2 bg-slate-700 rounded"></div>
+      <div class="space-y-3">
+       <div class="grid grid-cols-3 gap-4">
+        <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+        <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+       </div>
+       <div class="h-2 bg-slate-700 rounded"></div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <ul class="flex-col space-y-3">
+    <li
+     v-for="i in [1, 2, 3, 4, 5, 6, 7, 8]"
+     :key="i"
+     class="border border-blue-300 shadow rounded-md p-4 max-w-2xl w-full mx-auto z-0"
+    >
+     <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+       <div class="h-2 bg-slate-700 rounded"></div>
+       <div class="space-y-3">
+        <div class="grid grid-cols-3 gap-4">
+         <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+         <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+        </div>
+        <div class="h-2 bg-slate-700 rounded"></div>
+       </div>
+      </div>
+     </div>
+    </li>
+   </ul>
   </div>
  </main>
 </template>
+
+<style>
+#main_menue_navbar {
+ height: 10%;
+}
+#main_content {
+ height: 80%;
+}
+</style>

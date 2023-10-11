@@ -19,8 +19,8 @@ const signOut = async () => {
 };
 </script>
 <template>
- <NuxtLayout name="">
-  <main class="h-screen w-screen flex justify-center items-center">
+ <NuxtLayout name="custom">
+  <main class="">
    <div
     class="flex flex-col justify-center items-center space-y-4 border-4 border-b-8 border-r-8 rounded-2xl border-black p-5 min-w-fit bg-white"
    >

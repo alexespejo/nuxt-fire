@@ -23,12 +23,12 @@ const { data: user } = await useFetch(`/api/get-user-data/${route.params.id}`);
      <li v-if="user.biography">About Me: {{ user.biography }}</li>
     </ul>
    </div>
-   {{ user.posts }}
-   <!-- <ul v-if="user.posts">
+   <!-- {{ user.posts }} -->
+   <ul v-if="user.posts">
     <li v-for="(post, index) in user.posts" :key="index">
      <PostCard :id="post" />
     </li>
-   </ul> -->
+   </ul>
   </main>
  </NuxtLayout>
 </template>
